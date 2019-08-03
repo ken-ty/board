@@ -1,13 +1,13 @@
 <?php
 session_start();
-
+ 
 $message = '';
 try {
     $DBSERVER = 'localhost';
     $DBUSER = 'board';
-    $DBPSSWD = 'boardpw';
+    $DBPASSWD = 'boardpw';
     $DBNAME = 'board';
-
+ 
     $dsn = 'mysql:'
         . 'host=' . $DBSERVER . ';'
         . 'dbname=' . $DBNAME . ';'
@@ -17,12 +17,12 @@ try {
     $message = "接続に失敗しました: {$e->getMessage()}";
 }
 
-//入力がすべて入っていたらユーザーを作成する。
+// 入力が全て入っていたらユーザーを作成する
 if(!empty($_POST['mail']) && !empty($_POST['password'])) {
     $mail = $_POST['mail'];
-    $password = $_POST['passwotd'];
+    $password = $_POST['password'];
 
-     $sql = 'SELECT * FROM `users` WHERE mail = :mail AND password = :password';
+    $sql = 'SELECT * FROM `users` WHERE mail = :mail AND password = :password';
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':mail', $mail, \PDO::PARAM_STR);
     $stmt->bindValue(':password', $password, \PDO::PARAM_STR);
@@ -37,18 +37,18 @@ if(!empty($_POST['mail']) && !empty($_POST['password'])) {
         $message = 'ログインに失敗しました';
     }
 }
-?>
 
-<!DOCUTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset=""UTF-8">
+    <meta charset="UTF-8">
     <title>ログイン</title>
 </head>
 <body>
 <header>
     <div>
-        <a href="/bord/index.php">TOP</a>
+        <a href="/board/index.php">TOP</a>
         <a href="/board/register.php">新規作成</a>
         <a href="/board/login.php">ログイン</a>
         <a href="/board/logout.php">ログアウト</a>
@@ -57,12 +57,12 @@ if(!empty($_POST['mail']) && !empty($_POST['password'])) {
 </header>
 <div>
     <div style="color: red">
-        <?php ech $message; ?>
+        <?php echo $message; ?>
     </div>
     <form action="login.php" method="post">
         <label>メールアドレス: <input type="email" name="mail"/></label><br/>
-        <label>パスワード: <input type="password" name="pssword"/></label><br/>
-        <input type=""submit" value="ログイン">
+        <label>パスワード: <input type="password" name="password"/></label><br/>
+        <input type="submit" value="ログイン">
     </form>
 </div>
 </body>
