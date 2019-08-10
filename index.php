@@ -47,7 +47,7 @@ $boardList = $stmt->fetchAll();
   <ul>
     <?php
       foreach ($boardList as $board) {
-        echo "<li><a href='/board/board.php?id={$board['id']}'>{$board['title']}({$board['created']}）</a></li>";
+          echo "<li><a href='/board/board.php?id={$board['id']}'>{$board['title']} ({$board['created']}）</a></li>";
       }
     ?>
   </ul>
