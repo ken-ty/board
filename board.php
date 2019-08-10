@@ -18,7 +18,7 @@ try {
         . 'host=' . $DBSERVER . ';'
         . 'dbname=' . $DBNAME . ';'
         . 'charset=utf8';
-    $pdo = new PDO($dsn, $DBSERVER, $DBPASSWD, array(PDO::ATTR_EMULATE_PREPARES => false));
+    $pdo = new PDO($dsn, $DBUSER, $DBPASSWD, array(PDO::ATTR_EMULATE_PREPARES => false));
 } catch (Exception $e) {
     $message = "接続に失敗しました: {$e->getMessage()}";
 }
