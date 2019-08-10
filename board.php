@@ -36,7 +36,7 @@ if(empty($board)) {
 }
 
 if(!empty($_POST['comment']) && !empty($_SESSION['id'])) {
-    $sql = 'INSERT INTO `comments` (bordId, UserId, comment, created)';
+    $sql = 'INSERT INTO `comments` (boardId, userId, comment, created)';
     $sql .= 'VALUES (:boardId, :userId, :comment, NOW())';
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':boardId', $id, \PDO::PARAM_INT);
@@ -49,7 +49,7 @@ if(!empty($_POST['comment']) && !empty($_SESSION['id'])) {
     }
 }
 
-$sql = 'SELECT * FROM `comments` WHERE boardUd = :boardId';
+$sql = 'SELECT * FROM `comments` WHERE boardId = :boardId';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':boardId', $id, \PDO::PARAM_INT);
 $stmt->execute();
