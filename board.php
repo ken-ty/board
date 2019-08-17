@@ -37,6 +37,7 @@ if(empty($board)) {
 
 if(!empty($_POST['comment']) && !empty($_SESSION['id'])) {
     $sql = 'INSERT INTO `comments` (boardId, userId, comment, created)';
+    var_dump($_POST);
     $sql .= 'VALUES (:boardId, :userId, :comment, NOW())';
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':boardId', $id, \PDO::PARAM_INT);
